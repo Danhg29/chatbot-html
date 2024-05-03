@@ -1,0 +1,25 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header, nav, main, footer {
+    padding: 20px;
+}
+
+/* Estilos del encabezado */
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+}
+
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
