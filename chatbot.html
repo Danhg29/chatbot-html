@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chatbot Simple</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .chat-container {
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .chat-container::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    .chat-message {
+        margin-bottom: 10px;
+    }
+    .user-message {
+        float: right;
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+        padding: 10px;
+    }
+    .bot-message {
+        float: left;
+        background-color: #ddd;
+        border-radius: 5px;
+        padding: 10px;
+    }
+</style>
+</head>
+<body>
+<div class="chat-container">
+    <div class="chat-message user-message">¡Hola! ¿En qué puedo ayudarte?</div>
+</div>
+
+<script>
+// Respuestas predefinidas del chatbot
+const responses = {
+    "¿Cómo estás?": "Estoy bien, ¡gracias por preguntar!",
+    "¿Cuál es tu nombre?": "Me llamo ChatBot.",
+    "¿Qué es el ChatGPT?": "ChatGPT es un modelo de lenguaje desarrollado por OpenAI que puede generar respuestas a partir de texto introducido por el usuario.",
+    "Adiós": "¡Hasta luego! Si tienes más preguntas, no dudes en volver."
+};
+
+// Función para procesar el mensaje del usuario y generar una respuesta
+function processMessage() {
+    // Obtener el mensaje del usuario
+    const userMessage = document.getElementById("user-input").value;
+    // Obtener el contenedor del chat
+    const chatContainer = document.querySelector(".chat-container");
+
+    // Crear elemento para el mensaje del usuario
+    const userMessageElement = document.createElement("div");
+    userMessageElement.className = "chat-message user-message";
+    userMessageElement.textContent = userMessage;
+
+    // Agregar mensaje del usuario al contenedor del chat
+    chatContainer.appendChild(userMessageElement);
+
+    // Verificar si hay una respuesta predefinida para el mensaje del usuario
+    if (responses.hasOwnProperty(userMessage)) {
+        // Crear elemento para la respuesta del chatbot
+        const botMessageElement = document.createElement("div");
+        botMessageElement.className = "chat-message bot-message";
+        botMessageElement.textContent = responses[userMessage];
+
+        // Agregar respuesta del chatbot al contenedor del chat
+        chatContainer.appendChild(botMessageElement);
+    } else {
+        // Si no hay una respuesta predefinida, enviar un mensaje genérico
+        const botMessageElement = document.createElement("div");
+        botMessageElement.className = "chat-message bot-message";
+        botMessageElement.textContent = "Lo siento, no entendí tu pregunta.";
+
+        // Agregar mensaje genérico del chatbot al contenedor del chat
+        chatContainer.appendChild(botMessageElement);
+    }
+
+    // Limpiar el campo de entrada del usuario
+    document.getElementById("user-input").value = "";
+}
+
+// Asignar la función processMessage() al evento click del botón de enviar
+document.getElementById("send-button").addEventListener("click", processMessage);
+</script>
+
+</body>
+</html>
